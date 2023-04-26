@@ -36,3 +36,7 @@
     transform: rotate(360deg);
   }
 }
+
+body {
+  background: url("https://react-jobly-1.surge.sh/static/media/background.6549e727ece768243a0f.png");
+}

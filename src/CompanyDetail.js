@@ -1,16 +1,40 @@
-import React, {useState, useEffect} from "react"
+import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import JobCardList from "./JobCardList";
-import JoblyApi from "./api"
+import JoblyApi from "./api";
+import { useNavigate } from "react-router-dom";
+import NotFound from "./NotFound";
+
+/** CompanyDetail
+ *
+ *  Props: None
+ *
+ *  State:
+ *       - company: {
+ *                  handle: ""
+ *                  name: ""
+ *                  description: ""
+ *                  numEmployees: num
+ *                  logoUrl: jpg
+ *                  jobs: [{
+ *                   "id": 91,
+ *                   "title": "Paramedic",
+ *                   "salary": 122000,
+ *                   "equity": "0.047"
+ *                   } ...]
+ *                 }
+ *       - isLoading: Boolean
+ *
+ *  RoutesList -> CompanyDetail -> JobCardList
+ */
 
 function CompanyDetail() {
-
-  const [company, setCompany] = useState(null)
-  const [isLoading, setIsLoading] = useState(true)
+  const [company, setCompany] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
 
   const { handle } = useParams();
 
-  console.log("COMPANY STATE IS: ", company)
+  console.log("COMPANY STATE IS: ", company);
 
   useEffect(function fetchCompanyOnMount() {
     async function getCompany() {
@@ -29,13 +53,11 @@ function CompanyDetail() {
 
   return (
     <div className="CompanyDetail col-md-8 offset-md-2">
-      <h4>{ company.name }</h4>
-      <p>{ company.description }</p>
-      <JobCardList jobs={company.jobs}/>
+      <h4>{company.name}</h4>
+      <p>{company.description}</p>
+      <JobCardList jobs={company.jobs} />
     </div>
-  )
+  );
 }
-
-{/* <JobCardList jobs={}/> */}
 
 export default CompanyDetail;

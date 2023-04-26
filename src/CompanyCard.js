@@ -1,5 +1,26 @@
 import "./CompanyCard.css";
 
+/** CompanyCard
+ *
+ * Props:
+ *      - company: {
+ *                  handle: ""
+ *                  name: ""
+ *                  description: ""
+ *                  numEmployees: num
+ *                  logoUrl: jpg
+ *                  jobs: [{
+ *                   "id": 91,
+ *                   "title": "Paramedic",
+ *                   "salary": 122000,
+ *                   "equity": "0.047"
+ *                   } ...]
+ *                 }
+ *
+ * CompanyList -> CompanyCard
+ *
+ */
+
 function CompanyCard({ company }) {
   return (
     <div className="CompanyCard card">
@@ -18,7 +39,6 @@ function CompanyCard({ company }) {
         <small className="CompanyCard-description float-start">
           {company.description}
         </small>
-
       </div>
     </div>
   );

@@ -14,7 +14,8 @@ class JoblyApi {
   // Remember, the backend needs to be authorized with a token
   // We're providing a token you can use to interact with the backend API
   // DON'T MODIFY THIS TOKEN
-  static token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZ" +
+  static token =
+    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZ" +
     "SI6InRlc3R1c2VyIiwiaXNBZG1pbiI6ZmFsc2UsImlhdCI6MTU5ODE1OTI1OX0." +
     "FtrMwBQwe6Ue-glIFgz_Nf8XxRT2YecFCiSpYL0fCXc";
 
@@ -23,9 +24,7 @@ class JoblyApi {
 
     const url = `${BASE_URL}/${endpoint}`;
     const headers = { Authorization: `Bearer ${JoblyApi.token}` };
-    const params = (method === "get")
-      ? data
-      : {};
+    const params = method === "get" ? data : {};
 
     try {
       return (await axios({ url, method, data, params, headers })).data;
@@ -44,19 +43,23 @@ class JoblyApi {
 
   static async getCompany(handle) {
     let res = await this.request(`companies/${handle}`);
+    if (res.status >= 400) {
+      throw new Error();
+    }
     return res.company;
   }
 
   /** Get details on all companies */
 
   static async getCompanies() {
-    let res = await this.request('companies');
+    let res = await this.request("companies");
     return res.companies;
   }
 
   /** Search for company by title */
+  // TODO: change to companies
 
-  static async searchCompanyByTitle(term) {
+  static async searchCompaniesByHandle(term) {
     let res = await this.request(`companies?nameLike=${term}`);
     return res.companies;
   }
@@ -71,11 +74,16 @@ class JoblyApi {
 
   /** Get all jobs */
   static async getJobs() {
-    let res = await this.request('jobs');
+    let res = await this.request("jobs");
     return res.jobs;
   }
 
+  /** Search for jobs by title */
 
+  static async searchJobsByTitle(title) {
+    let res = await this.request(`jobs?title=${title}`);
+    return res.jobs;
+  }
 }
 
 export default JoblyApi;
