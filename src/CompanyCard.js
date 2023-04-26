@@ -23,8 +23,8 @@ import "./CompanyCard.css";
 
 function CompanyCard({ company }) {
   return (
-    <div className="CompanyCard card">
-      <div className="CompanyCard card-body">
+    <a className="CompanyCard card" href={`companies/${company.handle}`}>
+      <div className="Company Card card-body">
         <div className="CompanyCard card-title">
           <h6 className="CompanyCard-company">{company.name}</h6>
           {company.logoUrl !== null && (
@@ -35,12 +35,11 @@ function CompanyCard({ company }) {
             />
           )}
         </div>
-
         <small className="CompanyCard-description float-start">
           {company.description}
         </small>
       </div>
-    </div>
+    </a>
   );
 }
 
