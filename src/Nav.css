@@ -1,0 +1,18 @@
+.Navigation {
+  background-color: rgb(238, 246, 238);
+}
+
+.nav-link {
+  color: rgb(99, 91, 91);
+  display: block;
+  font-size: var(--bs-nav-link-font-size);
+  font-weight: bold;
+  padding: var(--bs-nav-link-padding-y) var(--bs-nav-link-padding-x);
+  text-decoration: none;
+  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out,
+    border-color 0.15s ease-in-out;
+}
+
+a:link {
+  text-decoration: none;
+}
