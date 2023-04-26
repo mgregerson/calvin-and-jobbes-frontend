@@ -54,6 +54,13 @@ class JoblyApi {
     return res.companies;
   }
 
+  /** Search for company by title */
+
+  static async searchCompanyByTitle(term) {
+    let res = await this.request(`companies?nameLike=${term}`);
+    return res.companies;
+  }
+
   // JOBS
 
   /** Get job details by id */
@@ -67,6 +74,8 @@ class JoblyApi {
     let res = await this.request('jobs');
     return res.jobs;
   }
+
+
 }
 
-export default JoblyApi
+export default JoblyApi;
