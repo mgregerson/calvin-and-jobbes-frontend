@@ -3,9 +3,9 @@ import "./CompanyCard.css";
 function CompanyCard({ company }) {
   return (
     <div className="CompanyCard card">
-      <div className="card-body">
-        <h6 class="card-title">
-          {company.name}
+      <div className="Company Card card-body">
+        <div className="CompanyCard card-title">
+          <h6 className="CompanyCard-company float-start">{company.name}</h6>
           {company.logoUrl !== null && (
             <img
               className="float-end ms-5"
@@ -13,9 +13,11 @@ function CompanyCard({ company }) {
               alt={company.name}
             />
           )}
-        </h6>
+        </div>
         <p>
-          <small>{company.description}</small>
+          <small className="CompanyCard-description float-start">
+            {company.description}
+          </small>
         </p>
       </div>
     </div>
