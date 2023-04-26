@@ -30,12 +30,14 @@ import JoblyApi from "./api";
 function CompanyDetail() {
   const [company, setCompany] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
-  const [apiError, setApiError] = useState(false);
+  const [apiError, setApiError] = useState({
+    isError: false,
+    errorMessage: ""
+  });
 
   const { handle } = useParams();
 
-  console.log("COMPANY STATE IS: ", company);
-
+  /** Fetches companies on mount. Sets jobs to all jobs from API response.  */
   useEffect(function fetchCompanyOnMount() {
     async function getCompany() {
       try {
@@ -44,7 +46,11 @@ function CompanyDetail() {
         setIsLoading(false);
       } catch (err) {
         setIsLoading(false);
-        setApiError(true);
+        console.log(err)
+        setApiError({
+          isError: true,
+          errorMessage: err[0]
+        });
       }
     }
     if (isLoading === true) {
@@ -57,8 +63,8 @@ function CompanyDetail() {
   }
 
   // Change this. Errors may arise for other reasons (ie. API is down.)
-  if (apiError === true) {
-    return <h1 className="apiError">There is no company with this handle.</h1>;
+  if (apiError.isError === true) {
+    return <h1 className="apiError">{apiError.errorMessage}</h1>;
   }
 
   return (
