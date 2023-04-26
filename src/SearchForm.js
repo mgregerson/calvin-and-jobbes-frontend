@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import "./SearchForm.css";
 
 const placeholderForm = { term: "" };
 
@@ -14,7 +15,7 @@ const placeholderForm = { term: "" };
 function SearchForm({ initialFormData = placeholderForm, handleSearch }) {
   const [formData, setFormData] = useState(initialFormData);
 
-  //TODO: Write docstring
+  /** Handles keystrokes in searchbar and updates formData */
   function handleChange(evt) {
     const fieldName = evt.target.name;
     const value = evt.target.value;
@@ -24,15 +25,15 @@ function SearchForm({ initialFormData = placeholderForm, handleSearch }) {
       return { ...currData };
     });
   }
-  // TODO: Write docstring
+  /** Calls filter function passed in from parent as prop */
   function handleSubmit(evt) {
     evt.preventDefault();
     handleSearch(formData.term);
   }
   return (
-    <div className="SearchForm mb-4">
+    <div className="SearchForm mb-4 d-flex pt-4">
       <form onSubmit={handleSubmit}>
-        <div className="row justify-content-center justify-content-lg-start gx-0">
+        <div className="row justify-content-center justify-content-lg-start gx-1">
           <div className="col-8">
             <input
               id="search-term"

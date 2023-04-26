@@ -9,10 +9,13 @@ import "./NotFound.css";
 
 function NotFound() {
   return (
-    <img
-      className="NotFound"
-      src="https://ubiq.co/tech-blog/wp-content/uploads/2020/11/How-to-Make-a-Custom-404-Page-730x410.jpg"
-    ></img>
+    <div className="NotFound">
+      <img
+        className="NotFound-photo"
+        src="../404img.jpg"
+      ></img>
+      <h3 className="NotFound-message">Sorry, we couldn't find that page!</h3>
+    </div>
   );
 }
 

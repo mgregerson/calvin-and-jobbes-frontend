@@ -16,9 +16,6 @@ function JobList() {
   const [jobs, setJobs] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
-  console.log(jobs, "THE jobs STATE");
-  console.log(isLoading, "isloading state!!!");
-
   /** Fetches jobs on mount. Sets jobs to all jobs from API response.  */
 
   useEffect(function fetchJobsOnMount() {
@@ -44,7 +41,7 @@ function JobList() {
   }
 
   return (
-    <div className="JobList col-md-8 offset-md-2">
+    <div className="JobList col-md-8 mx-auto">
       <SearchForm handleSearch={filterJobs} />
       <div className="JobList-List">
         {isLoading === false ? <JobCardList jobs={jobs} /> : null}
