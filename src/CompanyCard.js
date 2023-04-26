@@ -29,7 +29,7 @@ function CompanyCard({ company }) {
           <h6 className="CompanyCard-company">{company.name}</h6>
           {company.logoUrl !== null && (
             <img
-              className="float-end ms-5"
+              className="CompanyCard-img float-end ms-5"
               src={`${company.logoUrl}`}
               alt={company.name}
             />

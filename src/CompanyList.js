@@ -2,6 +2,7 @@ import CompanyCard from "./CompanyCard";
 import SearchForm from "./SearchForm";
 import { useState, useEffect } from "react";
 import JoblyApi from "./api";
+import "./CompanyList.css"
 
 /** CompanyList
  *
@@ -53,7 +54,7 @@ function CompanyList() {
   }
 
   return (
-    <div className="CompanyList col-md-8 offset-md-2">
+    <div className="CompanyList col-md-8 mx-auto">
       <SearchForm handleSearch={filterCompanies} />
       <div className="CompanyList-List">
         {isLoading !== true
