@@ -1,5 +1,11 @@
-function JobList() {
-  return "JobList";
+function JobList({jobData}) {
+
+
+  return (
+    <div className="JobList">
+
+    </div>
+  )
 }
 
 export default JobList;
