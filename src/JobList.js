@@ -5,6 +5,8 @@ import JobCardList from "./JobCardList";
 
 /** JobList
  *
+ * Props: None
+ * State: jobs: [{job1} ...] isLoading: boolean
  *
  *
  *  RoutesList -> JobList
@@ -16,6 +18,8 @@ function JobList() {
 
   console.log(jobs, "THE jobs STATE");
   console.log(isLoading, "isloading state!!!");
+
+  /** Fetches jobs on mount. Sets jobs to all jobs from API response.  */
 
   useEffect(function fetchJobsOnMount() {
     async function getJobs() {
@@ -32,17 +36,18 @@ function JobList() {
     return <div className="Loading">Loading Companies....</div>;
   }
 
+  /** Filters jobs by title. Sets state of jobs to API response */
+
   async function filterJobs(title) {
     const jobs = await JoblyApi.searchJobsByTitle(title);
     setJobs(jobs);
-    console.log("Search called, JOBS!!!! :)");
   }
 
   return (
     <div className="JobList col-md-8 offset-md-2">
       <SearchForm handleSearch={filterJobs} />
       <div className="JobList-List">
-        {isLoading !== true ? <JobCardList jobs={jobs} /> : null}
+        {isLoading === false ? <JobCardList jobs={jobs} /> : null}
       </div>
     </div>
   );

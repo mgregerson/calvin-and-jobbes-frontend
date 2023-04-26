@@ -57,7 +57,6 @@ class JoblyApi {
   }
 
   /** Search for company by title */
-  // TODO: change to companies
 
   static async searchCompaniesByHandle(term) {
     let res = await this.request(`companies?nameLike=${term}`);

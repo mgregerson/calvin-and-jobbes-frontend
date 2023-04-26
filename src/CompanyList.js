@@ -18,7 +18,7 @@ import JoblyApi from "./api";
  *       - isLoading: Boolean
  *
  *
- * RoutesList -> CompanyList
+ * RoutesList -> CompanyList -> SearchForm + CompanyCard
  */
 
 function CompanyList() {
@@ -26,6 +26,8 @@ function CompanyList() {
   const [isLoading, setIsLoading] = useState(true);
 
   console.log(companies, "THE COMPANIES STATE");
+
+  /** Returns list of all companies in the database on mount. */
 
   useEffect(function fetchCompaniesOnMount() {
     async function getCompanies() {
@@ -41,6 +43,8 @@ function CompanyList() {
   if (isLoading === true) {
     return <div className="Loading">Loading Companies....</div>;
   }
+
+  /** Filters companies by handle, Sets companies state to response from API. */
 
   async function filterCompanies(term) {
     const companies = await JoblyApi.searchCompaniesByHandle(term);

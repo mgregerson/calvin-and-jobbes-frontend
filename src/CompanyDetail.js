@@ -2,8 +2,6 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import JobCardList from "./JobCardList";
 import JoblyApi from "./api";
-import { useNavigate } from "react-router-dom";
-import NotFound from "./NotFound";
 
 /** CompanyDetail
  *
@@ -24,6 +22,7 @@ import NotFound from "./NotFound";
  *                   } ...]
  *                 }
  *       - isLoading: Boolean
+ *       - apiError: Boolean
  *
  *  RoutesList -> CompanyDetail -> JobCardList
  */
@@ -31,6 +30,7 @@ import NotFound from "./NotFound";
 function CompanyDetail() {
   const [company, setCompany] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
+  const [apiError, setApiError] = useState(false);
 
   const { handle } = useParams();
 
@@ -38,9 +38,14 @@ function CompanyDetail() {
 
   useEffect(function fetchCompanyOnMount() {
     async function getCompany() {
-      const company = await JoblyApi.getCompany(handle);
-      setCompany(company);
-      setIsLoading(false);
+      try {
+        const company = await JoblyApi.getCompany(handle);
+        setCompany(company);
+        setIsLoading(false);
+      } catch (err) {
+        setIsLoading(false);
+        setApiError(true);
+      }
     }
     if (isLoading === true) {
       getCompany();
@@ -49,6 +54,11 @@ function CompanyDetail() {
 
   if (isLoading === true) {
     return <div className="Loading">Loading Company....</div>;
+  }
+
+  // Change this. Errors may arise for other reasons (ie. API is down.)
+  if (apiError === true) {
+    return <h1 className="apiError">There is no company with this handle.</h1>;
   }
 
   return (

@@ -14,7 +14,7 @@ function Nav() {
     <nav className="Navigation navbar navbar-expand-md">
       <div className="container-fluid">
         <NavLink className="navbar-brand" to="/" end>
-          Jobly
+          Jobber the Hutt
         </NavLink>
         <ul className="navbar-nav ms-auto">
           <li className="nav-item me-4">

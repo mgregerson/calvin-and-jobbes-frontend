@@ -24,7 +24,7 @@ import "./CompanyCard.css";
 function CompanyCard({ company }) {
   return (
     <div className="CompanyCard card">
-      <div className="Company Card card-body">
+      <div className="CompanyCard card-body">
         <div className="CompanyCard card-title">
           <h6 className="CompanyCard-company">{company.name}</h6>
           {company.logoUrl !== null && (

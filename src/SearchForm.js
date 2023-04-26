@@ -2,9 +2,19 @@ import React, { useState } from "react";
 
 const placeholderForm = { term: "" };
 
+/** SearchForm (Write docstring)
+ *
+ * Props: initialFormData: {term: ""} handleSearch: Func def passed down.
+ * State: FormData: {term: ""} OR {name: ""}
+ *
+ * CompanyList -> SearchForm
+ * JobList -> SearchForm
+ */
+
 function SearchForm({ initialFormData = placeholderForm, handleSearch }) {
   const [formData, setFormData] = useState(initialFormData);
 
+  //TODO: Write docstring
   function handleChange(evt) {
     const fieldName = evt.target.name;
     const value = evt.target.value;
@@ -14,7 +24,7 @@ function SearchForm({ initialFormData = placeholderForm, handleSearch }) {
       return { ...currData };
     });
   }
-
+  // TODO: Write docstring
   function handleSubmit(evt) {
     evt.preventDefault();
     handleSearch(formData.term);
