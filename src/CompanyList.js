@@ -25,11 +25,18 @@ function CompanyList() {
     return <div className="Loading">Loading Companies....</div>;
   }
 
+  async function filterCompanies(term) {
+    const companies = await JoblyApi.searchCompanyByTitle(term)
+    setCompanies(companies);
+    console.log("SEARCH CALLED")
+  }
+
   return (
     <div className="CompanyList col-md-8 offset-md-2">
+      <SearchForm handleSearch={filterCompanies}/>
       <div className="CompanyList-List">
         {isLoading !== true ? (
-          companies.map((company) => <CompanyCard company={company} />)
+          companies.map((company) => <CompanyCard key={company.handle} company={company} />)
         ) : (
           <div></div>
         )}
@@ -37,15 +44,5 @@ function CompanyList() {
     </div>
   );
 }
-
-// static async getCompanies() {
-//   let res = await this.request('companies');
-//   return res.companies;
-// }
-
-// async function fetchDeck() {
-//   const deckResult = await axios.get(`${BASE_URL}/new/`);
-//   setDeck(deckResult.data);
-// }
 
 export default CompanyList;
