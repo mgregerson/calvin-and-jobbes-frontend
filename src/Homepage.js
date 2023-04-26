@@ -10,9 +10,11 @@ import "./Homepage.css";
 
 function Homepage() {
   return (
-    <div className="container text-center">
-      <h1 className="mb-4 fw-bold">Jobber the Hutt</h1>
-      <p className="lead">Find Your Dream Job</p>
+    <div className="Homepage">
+      <div className="container text-center my-auto">
+        <h1 className="mb-4 fw-bold">Jobber the Hutt</h1>
+        <p className="lead">Find Your Dream Job</p>
+      </div>
     </div>
   );
 }
