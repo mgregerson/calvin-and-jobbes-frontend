@@ -1,0 +1,16 @@
+img {
+  width: 50px;
+}
+
+.CompanyCard {
+  margin-bottom: 1rem;
+  max-height: 250px;
+}
+
+.CompanyCard:hover {
+}
+
+.CompanyCard.card {
+  display: flex;
+  flex-direction: column;
+}
