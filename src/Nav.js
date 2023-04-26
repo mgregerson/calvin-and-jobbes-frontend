@@ -13,18 +13,18 @@ function Nav() {
   return (
     <nav className="Navigation navbar navbar-expand-md">
       <div className="container-fluid">
-        <NavLink to="/" end>
-          <a className="navbar-brand">Jobly</a>
+        <NavLink className="navbar-brand" to="/" end>
+          Jobly
         </NavLink>
         <ul className="navbar-nav ms-auto">
           <li className="nav-item me-4">
-            <NavLink to="/companies" end>
-              <a className="nav-link">Companies</a>
+            <NavLink className="nav-link" to="/companies" end>
+              Companies
             </NavLink>
           </li>
           <li className="nav-item me-4">
-            <NavLink to="/jobs" end>
-              <a className="nav-link">Jobs</a>
+            <NavLink className="nav-link" to="/jobs" end>
+              Jobs
             </NavLink>
           </li>
         </ul>
