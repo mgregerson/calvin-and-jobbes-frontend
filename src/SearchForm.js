@@ -1,12 +1,15 @@
 import React, { useState } from "react";
 import "./SearchForm.css";
 
-const placeholderForm = { term: "" };
+const placeholderForm = {};
 
 /** SearchForm (Write docstring)
  *
- * Props: initialFormData: {term: ""} handleSearch: Func def passed down.
- * State: FormData: {term: ""} OR {name: ""}
+ * Props:
+ *       - initialFormData: {term: ""}
+ *       - handleSearch: Func def passed down.
+ * State:
+ *       - FormData: {term: ""} (CompanyList) OR {name: ""} (JobList)
  *
  * CompanyList -> SearchForm
  * JobList -> SearchForm
