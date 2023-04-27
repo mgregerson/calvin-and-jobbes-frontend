@@ -14,12 +14,11 @@ class JoblyApi {
   // Remember, the backend needs to be authorized with a token
   // We're providing a token you can use to interact with the backend API
   // DON'T MODIFY THIS TOKEN
-  static token = ""
+  static token = "";
 
-
-    // "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZ" +
-    // "SI6InRlc3R1c2VyIiwiaXNBZG1pbiI6ZmFsc2UsImlhdCI6MTU5ODE1OTI1OX0." +
-    // "FtrMwBQwe6Ue-glIFgz_Nf8XxRT2YecFCiSpYL0fCXc";
+  // "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZ" +
+  // "SI6InRlc3R1c2VyIiwiaXNBZG1pbiI6ZmFsc2UsImlhdCI6MTU5ODE1OTI1OX0." +
+  // "FtrMwBQwe6Ue-glIFgz_Nf8XxRT2YecFCiSpYL0fCXc";
 
   static async request(endpoint, data = {}, method = "get") {
     console.debug("API Call:", endpoint, data, method);
@@ -37,25 +36,73 @@ class JoblyApi {
     }
   }
 
-
   /** POST Register new user function */
 
-  static async registerUser()
+  static async registerUser(inputData) {
+    const { username, password, firstName, lastName, email } = inputData;
+    try {
+      let res = await this.request(
+        "auth/register",
+        { username, password, firstName, lastName, email },
+        "post"
+      );
+      this.token = res.token;
+      console.log(this.token, "THE TOKEN");
+      return this.token;
+    } catch (err) {
+      return err;
+    }
+  }
 
+  // Individual API routes
+
+  // Auth
 
   /** POST Log in user */
 
-  static async loginUser(username, password) {
-    let res = await this.request(`token`);
-    if (res.status >= 400) {
-      throw new Error();
+  static async loginUser(inputData) {
+    const { username, password } = inputData;
+    try {
+      let res = await this.request(
+        `auth/token`,
+        { username, password },
+        "post"
+      );
+      this.token = res.token;
+      console.log(this.token, "THE TOKEN");
+      return this.token;
+    } catch (err) {
+      return err;
     }
-    this.token = res.token;
+  }
+
+  // Users
+
+  /** GET User by username */
+
+  static async getUser(username, token) {
+    try {
+      let res = await this.request(`users/${username}`, { token });
+      return res.user;
+    } catch (err) {
+      return err;
+    }
   }
 
   /** PATCH Edit user */
 
-  // Individual API routes
+  static async editUser(updateData) {
+    try {
+      let res = await this.request(
+        `users/${updateData.username}`,
+        updateData,
+        "post"
+      );
+      return res.user;
+    } catch (err) {
+      return err;
+    }
+  }
 
   // COMPANIES
 
