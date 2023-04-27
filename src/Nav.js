@@ -16,6 +16,9 @@ function Nav() {
         <NavLink className="navbar-brand" to="/" end>
           Jobber the Hutt
         </NavLink>
+
+
+        {/* Add logic for if logged in */}
         <ul className="navbar-nav ms-auto">
           <li className="nav-item me-4">
             <NavLink className="nav-link" to="/companies" end>
