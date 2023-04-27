@@ -36,22 +36,42 @@ class JoblyApi {
     }
   }
 
+
+  // static async registerUser(inputData) {
+  //   const { username, password, firstName, lastName, email } = inputData;
+  //   try {
+  //     let res = await this.request(
+  //       "auth/register",
+  //       { username, password, firstName, lastName, email },
+  //       "post"
+  //     );
+  //     this.token = res.token;
+  //     console.log(this.token, "THE TOKEN");
+  //     return this.token;
+  //   } catch (err) {
+  //     return err;
+  //   }
+  // }
+
   /** POST Register new user function */
 
   static async registerUser(inputData) {
     const { username, password, firstName, lastName, email } = inputData;
-    try {
-      let res = await this.request(
-        "auth/register",
-        { username, password, firstName, lastName, email },
-        "post"
-      );
-      this.token = res.token;
-      console.log(this.token, "THE TOKEN");
-      return this.token;
-    } catch (err) {
-      return err;
-    }
+
+    let res = await this.request(
+      "auth/register",
+      { username, password, firstName, lastName, email },
+      "post"
+    );
+
+    // if (res.status >= 400) {
+    //   throw new Error()
+    // }
+
+    this.token = res.token;
+    console.log(this.token, "THE TOKEN");
+    return this.token;
+
   }
 
   // Individual API routes

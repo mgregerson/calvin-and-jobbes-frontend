@@ -1,5 +1,7 @@
 import { NavLink } from "react-router-dom";
 import "./Nav.css";
+import { useContext } from "react";
+import userContext from "./userContext";
 
 /** Nav
  *
@@ -10,6 +12,8 @@ import "./Nav.css";
  */
 
 function Nav() {
+  const { prefs } = useContext(userContext);
+  console.log(prefs)
   return (
     <nav className="Navigation navbar navbar-expand-md">
       <div className="container-fluid">
@@ -18,19 +22,35 @@ function Nav() {
         </NavLink>
 
 
-        {/* Add logic for if logged in */}
-        <ul className="navbar-nav ms-auto">
+        {prefs.username !== null ?
+
+          <ul className="navbar-nav ms-auto">
+            <li className="nav-item me-4">
+              <NavLink className="nav-link" to="/companies" end>
+                Companies
+              </NavLink>
+            </li>
+            <li className="nav-item me-4">
+              <NavLink className="nav-link" to="/jobs" end>
+                Jobs
+              </NavLink>
+            </li>
+          </ul>
+          :
+          <ul className="navbar-nav ms-auto">
           <li className="nav-item me-4">
-            <NavLink className="nav-link" to="/companies" end>
-              Companies
+            <NavLink className="nav-link" to="/login" end>
+              Login
             </NavLink>
           </li>
           <li className="nav-item me-4">
-            <NavLink className="nav-link" to="/jobs" end>
-              Jobs
+            <NavLink className="nav-link" to="/signup" end>
+              Sign Up
             </NavLink>
           </li>
         </ul>
+        }
+
       </div>
     </nav>
   );

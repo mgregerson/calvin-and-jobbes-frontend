@@ -8,7 +8,7 @@ import LoginForm from "./LoginForm";
 import SignupForm from "./SignupForm";
 import ProfileForm from "./ProfileForm";
 import { useContext } from "react";
-import userContext from "./UserContext";
+import userContext from "./userContext";
 
 /** RoutesList
  *

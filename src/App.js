@@ -3,10 +3,12 @@ import Nav from "./Nav";
 import RoutesList from "./RoutesList";
 import { BrowserRouter } from "react-router-dom";
 import JoblyApi from "./api";
-import userContext from "./UserContext";
+import userContext from "./userContext";
 import { useState } from "react";
+import SignupForm from "./SignupForm";
 
-const DEFAULT_PREFS = {};
+
+const DEFAULT_PREFS = { username: null };
 
 /** App
  *
@@ -19,25 +21,26 @@ const DEFAULT_PREFS = {};
 function App() {
   // state for prefs
   const [prefs, setPrefs] = useState(DEFAULT_PREFS);
+
+
   // function for login
   async function handleLogin(formData) {
-    try {
-      const token = await JoblyApi.handleLogin(formData);
-      const user = await JoblyApi.getUser(formData.username, token);
-      updatePrefs(user);
-    } catch (err) {
-      return err;
-    }
+
+    const token = await JoblyApi.loginUser(formData);
+    const user = await JoblyApi.getUser(formData.username, token);
+    updatePrefs(user);
+
   }
   // function for signup
   async function handleSignup(formData) {
-    try {
-      const token = await JoblyApi.handleSignup(formData);
-      const user = await JoblyApi.getUser(formData.username, token);
-      updatePrefs(user);
-    } catch (err) {
-      return err;
-    }
+    // try {
+    const token = await JoblyApi.registerUser(formData);
+    const user = await JoblyApi.getUser(formData.username, token);
+    console.log("APP LEVEL SUBMIT", formData);
+    updatePrefs(user);
+    // } catch (err) {
+    //   return <SignupForm handleSignup={handleSignup} />;
+    // }
   }
   // function for edit user
   async function handleProfileEdit(formData) {
@@ -57,7 +60,7 @@ function App() {
 
   return (
     <div className="App">
-      <userContext.Provider value={prefs}>
+      <userContext.Provider value={{ prefs }}>
         <BrowserRouter>
           <Nav />
           <RoutesList
