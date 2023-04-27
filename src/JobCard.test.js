@@ -55,7 +55,7 @@ test("Displays all information on the job on the page if salary/equity NOT null"
   );
 });
 
-test("Does not display salary if null", () => {
+test("Displays as unpaid internship if salary is null", () => {
   const { container } = render(
     <JobCard
       title={TEST_JOB.title}
@@ -71,7 +71,9 @@ test("Does not display salary if null", () => {
   expect(container.querySelector(".JobCard-company-name").innerHTML).toEqual(
     "Test Company"
   );
-  expect(container.querySelector(".JobCard-salary")).not.toBeInTheDocument();
+  expect(container.querySelector(".JobCard-salary").innerHTML).toEqual(
+    "Unpaid Internship"
+  );
   expect(container.querySelector(".JobCard-equity").innerHTML).toEqual(
     "Equity: 0.1"
   );

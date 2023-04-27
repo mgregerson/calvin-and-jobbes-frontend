@@ -20,9 +20,13 @@ function JobCard({ title, companyName, salary, equity }) {
       <div className="JobCard-body">
         <h6 className="JobCard-title">{title}</h6>
         <p className="JobCard-company-name">{companyName}</p>
-        {salary !== null && (
+        {salary !== null ? (
           <div>
             <small className="JobCard-salary">Salary: {salary}</small>
+          </div>
+        ) : (
+          <div>
+            <small className="JobCard-salary">Unpaid Internship</small>
           </div>
         )}
         {equity !== null && (
