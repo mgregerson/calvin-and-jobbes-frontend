@@ -1,21 +1,46 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 function SignupForm({ handleSignup }) {
-  const [formData, setFormData] = useState({});
+  const [formData, setFormData] = useState({
+    username: "",
+    password: "",
+    firstName: "",
+    lastName: "",
+    email: ""
+  });
+
+  const [apiError, setApiError] = useState({
+    isError: false,
+    errorMessage: ""
+  });
+
+  const navigate = useNavigate();
 
   /** Handles keystrokes in searchbar and updates formData */
   function handleChange(evt) {
     const fieldName = evt.target.name;
     const value = evt.target.value;
 
+
     setFormData((currData) => {
       currData[fieldName] = value;
       return { ...currData };
     });
   }
-  function handleSubmit(evt) {
+
+  async function handleSubmit(evt) {
     evt.preventDefault();
-    handleSignup(formData);
+    try {
+      await handleSignup(formData);
+      navigate("/")
+    } catch (err) {
+      console.log(err);
+      setApiError({
+        isError: true,
+        errorMessage: err
+      })
+    }
   }
 
   // add signup function
@@ -34,6 +59,7 @@ function SignupForm({ handleSignup }) {
               onChange={handleChange}
               value={formData.username}
               aria-label="username"
+              placeholder="username"
               required
             />
             <label htmlFor="password">Password</label>
@@ -44,6 +70,9 @@ function SignupForm({ handleSignup }) {
               onChange={handleChange}
               value={formData.password}
               aria-label="password"
+              type="password"
+              placeholder="password"
+              minLength="5"
               required
             />
             <label htmlFor="firstName">First Name</label>
@@ -54,6 +83,7 @@ function SignupForm({ handleSignup }) {
               onChange={handleChange}
               value={formData.firstName}
               aria-label="firstName"
+              placeholder="First Name"
               required
             />
             <label htmlFor="lastName">Last Name</label>
@@ -63,6 +93,7 @@ function SignupForm({ handleSignup }) {
               className="form-control form-control-lg"
               onChange={handleChange}
               value={formData.lastName}
+              placeholder="Last Name"
               aria-label="lastName"
               required
             />
@@ -73,17 +104,19 @@ function SignupForm({ handleSignup }) {
               className="form-control form-control-lg"
               onChange={handleChange}
               value={formData.email}
+              placeholder="Email"
               aria-label="email"
               required
             />
           </div>
           <div className="col-auto">
             <button className="btn search-btn btn-lg btn-primary">
-              Search
+              Submit
             </button>
           </div>
         </div>
       </form>
+      {apiError.isError && <p>{apiError.errorMessage}</p>}
     </div>
   );
 }
