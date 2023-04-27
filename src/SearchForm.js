@@ -46,7 +46,9 @@ function SearchForm({ initialFormData = placeholderForm, handleSearch }) {
             />
           </div>
           <div className="col-auto">
-            <button className="btn btn-lg btn-primary">Search</button>
+            <button className="btn search-btn btn-lg btn-primary">
+              Search
+            </button>
           </div>
         </div>
       </form>
