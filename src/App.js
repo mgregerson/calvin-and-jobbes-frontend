@@ -10,7 +10,15 @@ import { BrowserRouter } from "react-router-dom";
  */
 
 function App() {
+
+  // state for prefs
+  // function for login
+  // function for signup
+  // function for edit user
+
+
   return (<div className="App">
+    {/* Put in usercontext tags */}
     <BrowserRouter>
       <Nav />
       <RoutesList />
