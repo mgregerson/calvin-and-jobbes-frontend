@@ -5,14 +5,18 @@ import userContext from "./userContext";
 
 /** Nav
  *
- * Contains links to '/', '/companies' and '/jobs'
+ * Contains links to '/', '/companies', '/jobs', '/login', '/signup', '/profile'
+ *
+ * Props:
+ *        - logOut: function that handles logging out a user
  *
  * App -> Nav
  *
  */
 
-function Nav() {
+function Nav({logOut}) {
   const { user } = useContext(userContext);
+
   return (
     <nav className="Navigation navbar navbar-expand-md">
       <div className="container-fluid">
@@ -20,7 +24,7 @@ function Nav() {
           Jobber the Hutt
         </NavLink>
 
-        {user.username === null ? (
+        {user === null ? (
           <ul className="navbar-nav ms-auto">
             <li className="nav-item me-4">
               <NavLink className="nav-link" to="/login" end>
@@ -48,6 +52,11 @@ function Nav() {
             <li className="nav-item me-4">
               <NavLink className="nav-link" to="/profile" end>
                 Edit Profile
+              </NavLink>
+            </li>
+            <li className="nav-item me-4">
+              <NavLink className="nav-link" to="/" onClick={logOut} end>
+                Log out {user.username}
               </NavLink>
             </li>
           </ul>
