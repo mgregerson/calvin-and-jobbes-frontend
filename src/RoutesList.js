@@ -37,6 +37,7 @@ function RoutesList({ handleSignup, handleLogin, handleProfileEdit }) {
         <Route path="/companies" element={<CompanyList />}></Route>
         <Route path="/companies/:handle" element={<CompanyDetail />}></Route>
         <Route path="/jobs" element={<JobList />}></Route>
+        <Route path="/profile" element={<ProfileForm handleProfileEdit={handleProfileEdit} />}></Route>
         <Route path="*" element={<NotFound />}></Route>
       </Routes>
     );

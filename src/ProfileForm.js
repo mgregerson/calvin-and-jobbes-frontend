@@ -23,6 +23,8 @@ function ProfileForm({ handleProfileEdit }) {
     email: user.email,
   });
 
+  console.log(user, "USER IN PROFILEFORM")
+
   /** Handles keystrokes in searchbar and updates formData */
   function handleChange(evt) {
     const fieldName = evt.target.name;
@@ -39,7 +41,7 @@ function ProfileForm({ handleProfileEdit }) {
     const updateData = formData;
     delete updateData.username;
     console.log(formData, "THE FORM DATA IN PROFILE");
-    handleProfileEdit(updateData);
+    handleProfileEdit(user.username, updateData);
   }
 
   return (
@@ -90,7 +92,7 @@ function ProfileForm({ handleProfileEdit }) {
             />
             <div className="col-auto">
               <button className="btn search-btn btn-lg btn-primary">
-                Search
+                Submit
               </button>
             </div>
           </div>

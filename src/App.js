@@ -72,10 +72,11 @@ function App() {
   }
 
   /** TODO: Work on this */
-  async function handleProfileEdit(formData) {
+  async function handleProfileEdit(username, formData) {
     console.log(formData, "THE FORM DATA");
+    console.log(username, "USERNAME IN APP.JS PROFILEEDIT")
     try {
-      const user = await JoblyApi.editUser(formData);
+      const user = await JoblyApi.editUser(username, formData);
       setUser(user);
     } catch (err) {
       return err;
