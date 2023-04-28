@@ -1,9 +1,25 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
+/** Signup Form
+ *
+ * Props:
+ *       - handleLogin: Func def passed from app.js
+ *
+ * State:
+ *       - FormData: {username, password, firstName, lastName, email}
+ *       - ApiError: {isError, errorMessage}
+ *
+ * App -> SignupForm
+ *
+ */
+
 function LoginForm({ handleLogin }) {
   /** Handles keystrokes in searchbar and updates formData */
-  const [formData, setFormData] = useState({});
+  const [formData, setFormData] = useState({
+    username: "",
+    password: ""
+  });
   const [apiError, setApiError] = useState({
     isError: false,
     errorMessage: "",
@@ -21,6 +37,7 @@ function LoginForm({ handleLogin }) {
     });
   }
 
+  /** Navigates to signup page if successfully logged in, else shows error msg*/
   async function handleSubmit(evt) {
     evt.preventDefault();
     try {

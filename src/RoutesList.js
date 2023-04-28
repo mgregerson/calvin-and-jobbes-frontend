@@ -28,7 +28,7 @@ function RoutesList({ handleSignup, handleLogin, handleProfileEdit }) {
   const { user } = useContext(userContext);
   return (
     <Routes>
-      <Route path="/" element={<Homepage />}></Route>
+      <Route path="/" element={<Homepage user={user} />}></Route>
       <Route
         path="/login"
         element={<LoginForm handleLogin={handleLogin} />}
