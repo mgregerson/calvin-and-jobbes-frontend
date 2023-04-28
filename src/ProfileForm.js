@@ -18,7 +18,7 @@ function ProfileForm({ currUser, handleProfileEdit }) {
       return { ...currData };
     });
   }
-
+  /** handleSubmit of the form. Call function in props */
   function handleSubmit(evt) {
     evt.preventDefault();
     handleProfileEdit(formData);

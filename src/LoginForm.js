@@ -10,7 +10,7 @@ import { useNavigate } from "react-router-dom";
  *       - FormData: {username, password, firstName, lastName, email}
  *       - ApiError: {isError, errorMessage}
  *
- * App -> SignupForm
+ * App -> LoginForm
  *
  */
 
@@ -18,7 +18,7 @@ function LoginForm({ handleLogin }) {
   /** Handles keystrokes in searchbar and updates formData */
   const [formData, setFormData] = useState({
     username: "",
-    password: ""
+    password: "",
   });
   const [apiError, setApiError] = useState({
     isError: false,
@@ -54,9 +54,9 @@ function LoginForm({ handleLogin }) {
   // add login function
 
   return (
-    <div className="Login mb-4 d-flex pt-4">
-      <h1 className="Login-Message">Login</h1>
-      <form className="Login-Form" onSubmit={handleSubmit}>
+    <div className="LoginForm mb-4 d-flex pt-4">
+      <h1 className="LoginForm-Message">Login</h1>
+      <form className="LoginForm-Form" onSubmit={handleSubmit}>
         <div className="row justify-content-center justify-content-lg-start gx-1">
           <div className="col-8">
             <label htmlFor="username">Username</label>

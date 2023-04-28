@@ -2,6 +2,7 @@ import { NavLink } from "react-router-dom";
 import "./Nav.css";
 import { useContext } from "react";
 import userContext from "./userContext.js";
+import jwt_decode from "jwt-decode";
 
 /** Nav
  *
@@ -15,7 +16,11 @@ import userContext from "./userContext.js";
  */
 
 function Nav({ logOut }) {
-  const { user } = useContext(userContext);
+  // const { user } = useContext(userContext);
+
+  const token = localStorage.getItem("token");
+  const { username } = jwt_decode(token);
+  console.log(username, "THE USERNAME IN NAV");
 
   return (
     <nav className="Navigation navbar navbar-expand-md">
@@ -24,20 +29,7 @@ function Nav({ logOut }) {
           Jobber the Hutt
         </NavLink>
 
-        {user === null ? (
-          <ul className="navbar-nav ms-auto">
-            <li className="nav-item me-4">
-              <NavLink className="nav-link" to="/login" end>
-                Login
-              </NavLink>
-            </li>
-            <li className="nav-item me-4">
-              <NavLink className="nav-link" to="/signup" end>
-                Sign Up
-              </NavLink>
-            </li>
-          </ul>
-        ) : (
+        {token ? (
           <ul className="navbar-nav ms-auto">
             <li className="nav-item me-4">
               <NavLink className="nav-link" to="/companies" end>
@@ -56,7 +48,20 @@ function Nav({ logOut }) {
             </li>
             <li className="nav-item me-4">
               <NavLink className="nav-link" to="/" onClick={logOut} end>
-                Log out {user.username}
+                Log out {username}
+              </NavLink>
+            </li>
+          </ul>
+        ) : (
+          <ul className="navbar-nav ms-auto">
+            <li className="nav-item me-4">
+              <NavLink className="nav-link" to="/login" end>
+                Login
+              </NavLink>
+            </li>
+            <li className="nav-item me-4">
+              <NavLink className="nav-link" to="/signup" end>
+                Sign Up
               </NavLink>
             </li>
           </ul>

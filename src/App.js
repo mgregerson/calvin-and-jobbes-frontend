@@ -5,13 +5,15 @@ import { BrowserRouter } from "react-router-dom";
 import JoblyApi from "./api";
 import userContext from "./userContext.js";
 import { useState, useEffect } from "react";
+import jwt_decode from "jwt-decode";
 
 /** App
  *
+ * Props: None
+ *
  * State:
  *       - user: { username, firstName, lastName, email, isAdmin, applications}
- *       - currUser: string
- *       - token: string
+ *       - token: null -> string
  *
  *
  * App -> Nav
@@ -20,39 +22,43 @@ import { useState, useEffect } from "react";
 
 function App() {
   const [user, setUser] = useState(null);
-  const [currUser, setCurrUser] = useState(null);
   const [token, setToken] = useState(null);
 
-  /** Updates state for user and token whenever token, currUser changes */
+  console.log(user, "THE USER STATE");
+  console.log(token, "THE USER STATE");
+
+  /** Updates state for user and token whenever token changes */
   useEffect(
     function fetchUserOnTokenChange() {
-      async function getUser() {
-        const user = await JoblyApi.getUser(currUser, token);
+      async function getUser(username) {
+        const user = await JoblyApi.getUser(username, token);
         setUser(user);
       }
-      if (token) getUser();
+      if (token) {
+        const { username } = jwt_decode(token);
+        localStorage.setItem("token", JSON.stringify(token));
+        console.log(localStorage.getItem("token"), "THE LOCAL STORAGE");
+        getUser(username);
+      }
     },
-    [token, currUser]
+    [token]
   );
 
-  /** Makes api call to log in user, updates state for currUser and token */
+  /** Makes api call to log in user, updates state token */
   async function handleLogin(formData) {
     const token = await JoblyApi.loginUser(formData);
-    setCurrUser(formData.username);
     setToken(token);
   }
 
-  /** Makes api call to sign up new user, updates tate for currUser and token */
+  /** Makes api call to sign up new user, updates state for token */
   async function handleSignup(formData) {
     const token = await JoblyApi.registerUser(formData);
-    setCurrUser(formData.username);
     setToken(token);
   }
 
   /** Sets all states to null (logs out user) */
   function logOut(formData) {
     setUser(null);
-    setCurrUser(null);
     setToken(null);
   }
 

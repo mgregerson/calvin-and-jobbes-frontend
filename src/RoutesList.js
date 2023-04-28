@@ -24,6 +24,8 @@ import userContext from "./userContext.js";
  *
  */
 
+// Conditional. If user, render these routes, if not, render the others.
+
 function RoutesList({ handleSignup, handleLogin, handleProfileEdit }) {
   const { user } = useContext(userContext);
   return (

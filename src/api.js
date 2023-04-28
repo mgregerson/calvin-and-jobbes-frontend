@@ -56,7 +56,7 @@ class JoblyApi {
 
   // Auth
 
-  /** POST Log in user */
+  /** POST Log in user. Returns user token and sets token in class. */
 
   static async loginUser(inputData) {
     const { username, password } = inputData;
@@ -86,7 +86,7 @@ class JoblyApi {
       let res = await this.request(
         `users/${updateData.username}`,
         updateData,
-        "post"
+        "patch"
       );
       return res.user;
     } catch (err) {

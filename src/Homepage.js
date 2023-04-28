@@ -2,7 +2,7 @@ import "./Homepage.css";
 
 /** Homepage
  *
- * Props: None
+ * Props: user {username, firstName, lastName, email, applications: []}
  * State: None
  *
  * App -> Homepage

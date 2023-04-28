@@ -19,12 +19,12 @@ function SignupForm({ handleSignup }) {
     password: "",
     firstName: "",
     lastName: "",
-    email: ""
+    email: "",
   });
 
   const [apiError, setApiError] = useState({
     isError: false,
-    errorMessage: ""
+    errorMessage: "",
   });
 
   const navigate = useNavigate();
@@ -34,30 +34,27 @@ function SignupForm({ handleSignup }) {
     const fieldName = evt.target.name;
     const value = evt.target.value;
 
-
     setFormData((currData) => {
       currData[fieldName] = value;
       return { ...currData };
     });
   }
 
-    /** Navigates to signup page if successfully logged in, else shows error msg*/
+  /** Navigates to signup page if successfully logged in, else shows error msg*/
   async function handleSubmit(evt) {
     evt.preventDefault();
     try {
       await handleSignup(formData);
-      navigate("/")
+      navigate("/");
     } catch (err) {
       console.log(err);
       setApiError({
         isError: true,
-        errorMessage: err
-      })
+        errorMessage: err,
+      });
     }
   }
 
-  // add signup function
-  // username, password, firstname, lastname, email
   return (
     <div className="SignupForm mb-4 d-flex pt-4">
       <h1 className="SignupForm-Message">Sign Up</h1>
