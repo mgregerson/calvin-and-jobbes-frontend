@@ -6,48 +6,57 @@ import JoblyApi from "./api";
 import userContext from "./userContext";
 import { useState, useEffect } from "react";
 
-const DEFAULT_USER = { username: null };
-
 /** App
+ *
+ * State:
+ *       - user: { username, firstName, lastName, email, isAdmin, applications}
+ *       - currUser: string
+ *       - token: string
+ *
  *
  * App -> Nav
  * App -> RoutesList
  */
 
-// email, firstName, isAdmin, lastName, userName
-
 function App() {
-  const [user, setUser] = useState(DEFAULT_USER);
+  const [user, setUser] = useState(null);
+  const [currUser, setCurrUser] = useState(null);
   const [token, setToken] = useState(null);
 
-  console.log(user, "THE CURRENT USER");
-  console.log(token, "THE CURR TOKEN");
-
+  /** Updates state for user and token whenever token, currUser changes */
   useEffect(
     function fetchUserOnTokenChange() {
       async function getUser() {
-        const user = await JoblyApi.getUser(user, token);
+        const user = await JoblyApi.getUser(currUser, token);
         setUser(user);
       }
       if (token) getUser();
     },
-    [token]
+    [token, currUser]
   );
 
-  // function for login
+  /** Makes api call to log in user, updates state for currUser and token */
   async function handleLogin(formData) {
     const token = await JoblyApi.loginUser(formData);
-    setUser(formData.username);
+    setCurrUser(formData.username);
     setToken(token);
   }
 
-  // function for signup
+  /** Makes api call to sign up new user, updates tate for currUser and token */
   async function handleSignup(formData) {
     const token = await JoblyApi.registerUser(formData);
+    setCurrUser(formData.username);
     setToken(token);
   }
 
-  // function for edit user
+  /** Sets all states to null (logs out user) */
+  function logOut(formData) {
+    setUser(null);
+    setCurrUser(null);
+    setToken(null);
+  }
+
+  /** TODO: Work on this */
   async function handleProfileEdit(formData) {
     try {
       const user = await JoblyApi.editUser(formData);
@@ -57,13 +66,11 @@ function App() {
     }
   }
 
-  console.log(user, "DID WE GET NEW USER????");
-
   return (
     <div className="App">
       <userContext.Provider value={{ user }}>
         <BrowserRouter>
-          <Nav />
+          <Nav logOut={logOut} />
           <RoutesList
             handleLogin={handleLogin}
             handleSignup={handleSignup}
