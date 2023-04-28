@@ -1,11 +1,26 @@
 import React, { useState } from "react";
+import { useContext } from "react";
+import userContext from "./userContext";
 
-function ProfileForm({ currUser, handleProfileEdit }) {
+/** ProfileForm
+ *
+ * Props:
+ *       - handleProfileEdit: function passed down from App.
+ *
+ * State:
+ *       - formData: Object with Form Data ({username, firstName, lastName, email})
+ *
+ * Renders a form so that a current user can edit their profile.
+ */
+
+function ProfileForm({ handleProfileEdit }) {
+  // USE CONTEXT OF USER: SET CURR FORM DATA TO USERNAME, FIRSTNAME, LASTNAME, EMAIL
+  const { user } = useContext(userContext);
   const [formData, setFormData] = useState({
-    username: currUser.username,
-    firstName: currUser.firstName,
-    lastName: currUser.lastName,
-    email: currUser.email,
+    username: user.username,
+    firstName: user.firstName,
+    lastName: user.lastName,
+    email: user.email,
   });
 
   /** Handles keystrokes in searchbar and updates formData */
@@ -21,7 +36,10 @@ function ProfileForm({ currUser, handleProfileEdit }) {
   /** handleSubmit of the form. Call function in props */
   function handleSubmit(evt) {
     evt.preventDefault();
-    handleProfileEdit(formData);
+    const updateData = formData;
+    delete updateData.username;
+    console.log(formData, "THE FORM DATA IN PROFILE");
+    handleProfileEdit(updateData);
   }
 
   return (

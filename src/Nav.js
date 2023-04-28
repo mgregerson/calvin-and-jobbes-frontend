@@ -7,6 +7,9 @@ import jwt_decode from "jwt-decode";
 /** Nav
  *
  * Contains links to '/', '/companies', '/jobs', '/login', '/signup', '/profile'
+ * and logout functionality when logged in.
+ *
+ * Contains links to '/login' and '/signup' when not logged in.
  *
  * Props:
  *        - logOut: function that handles logging out a user
@@ -16,11 +19,8 @@ import jwt_decode from "jwt-decode";
  */
 
 function Nav({ logOut }) {
-
   const { user } = useContext(userContext);
-  const token = localStorage.getItem("token");
-
-
+  // token
   return (
     <nav className="Navigation navbar navbar-expand-md">
       <div className="container-fluid">
@@ -28,7 +28,7 @@ function Nav({ logOut }) {
           Jobber the Hutt
         </NavLink>
 
-        {token ? (
+        {user?.username ? (
           <ul className="navbar-nav ms-auto">
             <li className="nav-item me-4">
               <NavLink className="nav-link" to="/companies" end>
@@ -47,7 +47,7 @@ function Nav({ logOut }) {
             </li>
             <li className="nav-item me-4">
               <NavLink className="nav-link" to="/" onClick={logOut} end>
-                Log out {user.username}
+                Log out {user?.username}
               </NavLink>
             </li>
           </ul>

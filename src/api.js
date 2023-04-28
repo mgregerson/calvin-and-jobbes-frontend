@@ -16,7 +16,6 @@ class JoblyApi {
   // DON'T MODIFY THIS TOKEN
   static token = "";
 
-
   static async request(endpoint, data = {}, method = "get") {
     console.debug("API Call:", endpoint, data, method, this.token);
 
@@ -33,6 +32,10 @@ class JoblyApi {
     }
   }
 
+  // Individual API routes
+
+  // Auth
+
   /** POST Register new user function */
 
   static async registerUser(inputData) {
@@ -47,10 +50,6 @@ class JoblyApi {
     this.token = res.token;
     return this.token;
   }
-
-  // Individual API routes
-
-  // Auth
 
   /** POST Log in user. Returns user token and sets token in class. */
 
@@ -73,12 +72,12 @@ class JoblyApi {
   /** PATCH Edit user */
 
   static async editUser(updateData) {
-      let res = await this.request(
-        `users/${updateData.username}`,
-        updateData,
-        "patch"
-      );
-      return res.user;
+    let res = await this.request(
+      `users/${updateData.username}`,
+      updateData,
+      "patch"
+    );
+    return res.user;
   }
 
   // COMPANIES
