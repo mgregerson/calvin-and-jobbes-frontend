@@ -36,7 +36,6 @@ class JoblyApi {
     }
   }
 
-
   // static async registerUser(inputData) {
   //   const { username, password, firstName, lastName, email } = inputData;
   //   try {
@@ -64,14 +63,9 @@ class JoblyApi {
       "post"
     );
 
-    // if (res.status >= 400) {
-    //   throw new Error()
-    // }
-
     this.token = res.token;
     console.log(this.token, "THE TOKEN");
     return this.token;
-
   }
 
   // Individual API routes
@@ -82,18 +76,10 @@ class JoblyApi {
 
   static async loginUser(inputData) {
     const { username, password } = inputData;
-    try {
-      let res = await this.request(
-        `auth/token`,
-        { username, password },
-        "post"
-      );
-      this.token = res.token;
-      console.log(this.token, "THE TOKEN");
-      return this.token;
-    } catch (err) {
-      return err;
-    }
+    let res = await this.request(`auth/token`, { username, password }, "post");
+    this.token = res.token;
+    console.log(this.token, "THE TOKEN");
+    return this.token;
   }
 
   // Users

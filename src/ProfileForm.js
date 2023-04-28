@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 
-function ProfileForm({ currPrefs, handleProfileEdit }) {
+function ProfileForm({ currUser, handleProfileEdit }) {
   const [formData, setFormData] = useState({
-    username: currPrefs.username,
-    firstName: currPrefs.firstName,
-    lastName: currPrefs.lastName,
-    email: currPrefs.email,
+    username: currUser.username,
+    firstName: currUser.firstName,
+    lastName: currUser.lastName,
+    email: currUser.email,
   });
 
   /** Handles keystrokes in searchbar and updates formData */

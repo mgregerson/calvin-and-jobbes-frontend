@@ -25,7 +25,7 @@ import userContext from "./userContext";
  */
 
 function RoutesList({ handleSignup, handleLogin, handleProfileEdit }) {
-  const { prefs } = useContext(userContext);
+  const { user } = useContext(userContext);
   return (
     <Routes>
       <Route path="/" element={<Homepage />}></Route>
@@ -40,10 +40,7 @@ function RoutesList({ handleSignup, handleLogin, handleProfileEdit }) {
       <Route
         path="/profile"
         element={
-          <ProfileForm
-            currPrefs={prefs}
-            handleProfileEdit={handleProfileEdit}
-          />
+          <ProfileForm currUser={user} handleProfileEdit={handleProfileEdit} />
         }
       ></Route>
       <Route path="/companies" element={<CompanyList />}></Route>

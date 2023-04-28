@@ -12,8 +12,7 @@ import userContext from "./userContext";
  */
 
 function Nav() {
-  const { prefs } = useContext(userContext);
-  console.log(prefs)
+  const { user } = useContext(userContext);
   return (
     <nav className="Navigation navbar navbar-expand-md">
       <div className="container-fluid">
@@ -21,9 +20,20 @@ function Nav() {
           Jobber the Hutt
         </NavLink>
 
-
-        {prefs.username !== null ?
-
+        {user.username === null ? (
+          <ul className="navbar-nav ms-auto">
+            <li className="nav-item me-4">
+              <NavLink className="nav-link" to="/login" end>
+                Login
+              </NavLink>
+            </li>
+            <li className="nav-item me-4">
+              <NavLink className="nav-link" to="/signup" end>
+                Sign Up
+              </NavLink>
+            </li>
+          </ul>
+        ) : (
           <ul className="navbar-nav ms-auto">
             <li className="nav-item me-4">
               <NavLink className="nav-link" to="/companies" end>
@@ -35,22 +45,13 @@ function Nav() {
                 Jobs
               </NavLink>
             </li>
+            <li className="nav-item me-4">
+              <NavLink className="nav-link" to="/profile" end>
+                Edit Profile
+              </NavLink>
+            </li>
           </ul>
-          :
-          <ul className="navbar-nav ms-auto">
-          <li className="nav-item me-4">
-            <NavLink className="nav-link" to="/login" end>
-              Login
-            </NavLink>
-          </li>
-          <li className="nav-item me-4">
-            <NavLink className="nav-link" to="/signup" end>
-              Sign Up
-            </NavLink>
-          </li>
-        </ul>
-        }
-
+        )}
       </div>
     </nav>
   );
