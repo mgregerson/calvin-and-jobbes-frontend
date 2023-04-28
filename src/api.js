@@ -16,12 +16,9 @@ class JoblyApi {
   // DON'T MODIFY THIS TOKEN
   static token = "";
 
-  // "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZ" +
-  // "SI6InRlc3R1c2VyIiwiaXNBZG1pbiI6ZmFsc2UsImlhdCI6MTU5ODE1OTI1OX0." +
-  // "FtrMwBQwe6Ue-glIFgz_Nf8XxRT2YecFCiSpYL0fCXc";
 
   static async request(endpoint, data = {}, method = "get") {
-    console.debug("API Call:", endpoint, data, method);
+    console.debug("API Call:", endpoint, data, method, this.token);
 
     const url = `${BASE_URL}/${endpoint}`;
     const headers = { Authorization: `Bearer ${JoblyApi.token}` };
@@ -48,7 +45,6 @@ class JoblyApi {
     );
 
     this.token = res.token;
-    console.log(this.token, "THE TOKEN");
     return this.token;
   }
 
@@ -62,7 +58,6 @@ class JoblyApi {
     const { username, password } = inputData;
     let res = await this.request(`auth/token`, { username, password }, "post");
     this.token = res.token;
-    console.log(this.token, "THE TOKEN");
     return this.token;
   }
 
@@ -70,28 +65,20 @@ class JoblyApi {
 
   /** GET User by username */
 
-  static async getUser(username, token) {
-    try {
-      let res = await this.request(`users/${username}`, { token });
-      return res.user;
-    } catch (err) {
-      return err;
-    }
+  static async getUser(username) {
+    let res = await this.request(`users/${username}`);
+    return res.user;
   }
 
   /** PATCH Edit user */
 
   static async editUser(updateData) {
-    try {
       let res = await this.request(
         `users/${updateData.username}`,
         updateData,
         "patch"
       );
       return res.user;
-    } catch (err) {
-      return err;
-    }
   }
 
   // COMPANIES
