@@ -14,7 +14,6 @@ import "./JobCard.css";
  */
 
 function JobCard({ title, companyName, salary, equity }) {
-  console.log(equity);
   return (
     <div className="JobCard card my-2">
       <div className="JobCard-body">

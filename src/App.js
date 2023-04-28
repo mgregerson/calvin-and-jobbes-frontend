@@ -21,8 +21,9 @@ import jwt_decode from "jwt-decode";
  */
 
 function App() {
-  const [user, setUser] = useState(localStorage.getItem("user"));
-  const [token, setToken] = useState(localStorage.getItem("token"));
+  const [user, setUser] = useState("");
+  console.log(user, "THE USER IN APP");
+  const [token, setToken] = useState("");
 
   /** Updates state for user and token whenever token changes */
   useEffect(
@@ -60,8 +61,8 @@ function App() {
 
   /** Sets all states to null (logs out user) */
   function logOut(formData) {
-    setUser(null);
-    setToken(null);
+    setUser("");
+    setToken("");
     localStorage.setItem("token", "");
   }
 
@@ -79,9 +80,7 @@ function App() {
     <div className="App">
       <userContext.Provider value={{ user }}>
         <BrowserRouter>
-          <Nav
-            logOut={logOut}
-          />
+          <Nav logOut={logOut} />
           <RoutesList
             handleLogin={handleLogin}
             handleSignup={handleSignup}
