@@ -71,9 +71,9 @@ class JoblyApi {
 
   /** PATCH Edit user */
 
-  static async editUser(updateData) {
+  static async editUser(username, updateData) {
     let res = await this.request(
-      `users/${updateData.username}`,
+      `users/${username}`,
       updateData,
       "patch"
     );
