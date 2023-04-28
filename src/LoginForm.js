@@ -1,8 +1,16 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 function LoginForm({ handleLogin }) {
   /** Handles keystrokes in searchbar and updates formData */
   const [formData, setFormData] = useState({});
+  const [apiError, setApiError] = useState({
+    isError: false,
+    errorMessage: "",
+  });
+
+  const navigate = useNavigate();
+
   function handleChange(evt) {
     const fieldName = evt.target.name;
     const value = evt.target.value;
@@ -13,9 +21,17 @@ function LoginForm({ handleLogin }) {
     });
   }
 
-  function handleSubmit(evt) {
+  async function handleSubmit(evt) {
     evt.preventDefault();
-    handleLogin(formData);
+    try {
+      await handleLogin(formData);
+      navigate("/");
+    } catch (err) {
+      setApiError({
+        isError: true,
+        errorMessage: err,
+      });
+    }
   }
 
   // add login function
@@ -40,6 +56,7 @@ function LoginForm({ handleLogin }) {
             <input
               id="password"
               name="password"
+              type="password"
               className="form-control form-control-lg"
               onChange={handleChange}
               value={formData.password}
@@ -54,6 +71,7 @@ function LoginForm({ handleLogin }) {
           </div>
         </div>
       </form>
+      {apiError.isError && <p>{apiError.errorMessage}</p>}
     </div>
   );
 }
