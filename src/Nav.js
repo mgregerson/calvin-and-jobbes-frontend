@@ -16,11 +16,10 @@ import jwt_decode from "jwt-decode";
  */
 
 function Nav({ logOut }) {
-  // const { user } = useContext(userContext);
 
+  const { user } = useContext(userContext);
   const token = localStorage.getItem("token");
-  const { username } = jwt_decode(token);
-  console.log(username, "THE USERNAME IN NAV");
+
 
   return (
     <nav className="Navigation navbar navbar-expand-md">
@@ -48,7 +47,7 @@ function Nav({ logOut }) {
             </li>
             <li className="nav-item me-4">
               <NavLink className="nav-link" to="/" onClick={logOut} end>
-                Log out {username}
+                Log out {user.username}
               </NavLink>
             </li>
           </ul>

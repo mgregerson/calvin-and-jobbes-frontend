@@ -21,24 +21,26 @@ import jwt_decode from "jwt-decode";
  */
 
 function App() {
-  const [user, setUser] = useState(null);
-  const [token, setToken] = useState(null);
-
-  console.log(user, "THE USER STATE");
-  console.log(token, "THE USER STATE");
+  const [user, setUser] = useState(localStorage.getItem("user"));
+  const [token, setToken] = useState(localStorage.getItem("token"));
 
   /** Updates state for user and token whenever token changes */
   useEffect(
     function fetchUserOnTokenChange() {
       async function getUser(username) {
-        const user = await JoblyApi.getUser(username, token);
-        setUser(user);
+        try {
+          const user = await JoblyApi.getUser(username);
+          setUser(user);
+        } catch (err) {
+          return;
+        }
       }
       if (token) {
         const { username } = jwt_decode(token);
-        localStorage.setItem("token", JSON.stringify(token));
-        console.log(localStorage.getItem("token"), "THE LOCAL STORAGE");
+        JoblyApi.token = token;
         getUser(username);
+        localStorage.setItem("token", token);
+        localStorage.setItem("user", user);
       }
     },
     [token]
@@ -60,6 +62,7 @@ function App() {
   function logOut(formData) {
     setUser(null);
     setToken(null);
+    localStorage.setItem("token", "");
   }
 
   /** TODO: Work on this */
@@ -76,7 +79,9 @@ function App() {
     <div className="App">
       <userContext.Provider value={{ user }}>
         <BrowserRouter>
-          <Nav logOut={logOut} />
+          <Nav
+            logOut={logOut}
+          />
           <RoutesList
             handleLogin={handleLogin}
             handleSignup={handleSignup}
