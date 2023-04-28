@@ -3,7 +3,7 @@ import Nav from "./Nav";
 import RoutesList from "./RoutesList";
 import { BrowserRouter } from "react-router-dom";
 import JoblyApi from "./api";
-import userContext from "./userContext";
+import userContext from "./userContext.js";
 import { useState, useEffect } from "react";
 
 /** App
