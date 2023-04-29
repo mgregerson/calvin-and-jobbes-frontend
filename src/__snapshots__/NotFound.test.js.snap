@@ -1,0 +1,19 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`NotFound Component matches snapshot 1`] = `
+<div>
+  <div
+    class="NotFound"
+  >
+    <img
+      class="NotFound-photo"
+      src="../404img.jpg"
+    />
+    <h3
+      class="NotFound-message"
+    >
+      Sorry, we couldn't find that page!
+    </h3>
+  </div>
+</div>
+`;

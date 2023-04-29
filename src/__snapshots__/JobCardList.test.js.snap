@@ -1,0 +1,69 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`JobCardList component matches snapshot 1`] = `
+<div>
+  <div
+    class="JobCardList"
+  >
+    <div
+      class="JobCard card my-2"
+    >
+      <div
+        class="JobCard-body"
+      >
+        <h6
+          class="JobCard-title"
+        >
+          Test Job 1
+        </h6>
+        <p
+          class="JobCard-company-name"
+        >
+          Test Company 1
+        </p>
+        <div>
+          <small
+            class="JobCard-salary"
+          >
+            Salary: 
+            50
+          </small>
+        </div>
+        <div>
+          <small
+            class="JobCard-equity"
+          >
+            Equity: 
+            .1
+          </small>
+        </div>
+      </div>
+    </div>
+    <div
+      class="JobCard card my-2"
+    >
+      <div
+        class="JobCard-body"
+      >
+        <h6
+          class="JobCard-title"
+        >
+          Test Job 2
+        </h6>
+        <p
+          class="JobCard-company-name"
+        >
+          Test Company 2
+        </p>
+        <div>
+          <small
+            class="JobCard-salary"
+          >
+            Unpaid Internship
+          </small>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;

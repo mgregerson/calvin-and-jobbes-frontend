@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useContext } from "react";
 import userContext from "./userContext";
+import "./ProfileForm.css";
 
 /** ProfileForm
  *
@@ -23,7 +24,7 @@ function ProfileForm({ handleProfileEdit }) {
     email: user.email,
   });
 
-  console.log(user, "USER IN PROFILEFORM")
+  console.log(user, "USER IN PROFILEFORM");
 
   /** Handles keystrokes in searchbar and updates formData */
   function handleChange(evt) {
@@ -45,59 +46,61 @@ function ProfileForm({ handleProfileEdit }) {
   }
 
   return (
-    <div className="ProfileForm mb-4 d-flex pt-4">
-      <h1 className="ProfileForm-Message">Update Profile</h1>
-      <form className="ProfileForm-Form" onSubmit={handleSubmit}>
-        <div className="row justify-content-center justify-content-lg-start gx-1">
-          <div className="col-8">
-            <label htmlFor="username">Username</label>
-            <input
-              id="username"
-              name="username"
-              className="form-control form-control-lg"
-              onChange={handleChange}
-              value={formData.username}
-              aria-label="username"
-              disabled
-            />
-            <label htmlFor="firstName">First Name</label>
-            <input
-              id="first-name"
-              name="firstName"
-              className="form-control form-control-lg"
-              onChange={handleChange}
-              value={formData.firstName}
-              required
-              aria-label="firstName"
-            />
-            <label htmlFor="lastName">Last Name</label>
-            <input
-              id="last-name"
-              name="lastName"
-              className="form-control form-control-lg"
-              onChange={handleChange}
-              value={formData.lastName}
-              aria-label="lastName"
-              required
-            />
-            <label htmlFor="email">Email</label>
-            <input
-              id="email"
-              name="email"
-              className="form-control form-control-lg"
-              onChange={handleChange}
-              value={formData.email}
-              aria-label="email"
-              required
-            />
-            <div className="col-auto">
-              <button className="btn search-btn btn-lg btn-primary">
-                Submit
-              </button>
-            </div>
+    <div className="pt-5">
+      <div className="ProfileForm col-md-6 col-lg-4 offset-md-3 offset-lg-4">
+        <h3 className="ProfileForm-message">Update Profile</h3>
+        <div className="card">
+          <div className="card-body">
+            <form className="ProfileForm-Form" onSubmit={handleSubmit}>
+              <label htmlFor="username">Username</label>
+              <input
+                id="username"
+                name="username"
+                className="form-control form-control-lg"
+                onChange={handleChange}
+                value={formData.username}
+                aria-label="username"
+                disabled
+              />
+              <label htmlFor="firstName">First Name</label>
+              <input
+                id="first-name"
+                name="firstName"
+                className="form-control form-control-lg"
+                onChange={handleChange}
+                value={formData.firstName}
+                required
+                aria-label="firstName"
+              />
+              <label htmlFor="lastName">Last Name</label>
+              <input
+                id="last-name"
+                name="lastName"
+                className="form-control form-control-lg"
+                onChange={handleChange}
+                value={formData.lastName}
+                aria-label="lastName"
+                required
+              />
+              <label htmlFor="email">Email</label>
+              <input
+                id="email"
+                name="email"
+                className="form-control form-control-lg"
+                onChange={handleChange}
+                value={formData.email}
+                aria-label="email"
+                required
+              />
+              <div className="ProfileForm-button">
+                <button className="btn search-btn btn-lg btn-primary">
+                  Submit
+                </button>
+              </div>
+            </form>
           </div>
         </div>
-      </form>
+      </div>
     </div>
   );
 }

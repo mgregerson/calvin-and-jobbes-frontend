@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import "./SignupForm.css";
 
 /** Signup Form
  *
@@ -56,77 +57,79 @@ function SignupForm({ handleSignup }) {
   }
 
   return (
-    <div className="SignupForm mb-4 d-flex pt-4">
-      <h1 className="SignupForm-Message">Sign Up</h1>
-      <form className="SignupForm-Form" onSubmit={handleSubmit}>
-        <div className="row justify-content-center justify-content-lg-start gx-1">
-          <div className="col-8">
-            <label htmlFor="username">Username</label>
-            <input
-              id="username"
-              name="username"
-              className="form-control form-control-lg"
-              onChange={handleChange}
-              value={formData.username}
-              aria-label="username"
-              placeholder="username"
-              required
-            />
-            <label htmlFor="password">Password</label>
-            <input
-              id="password"
-              name="password"
-              className="form-control form-control-lg"
-              onChange={handleChange}
-              value={formData.password}
-              aria-label="password"
-              type="password"
-              placeholder="password"
-              minLength="5"
-              required
-            />
-            <label htmlFor="firstName">First Name</label>
-            <input
-              id="first-name"
-              name="firstName"
-              className="form-control form-control-lg"
-              onChange={handleChange}
-              value={formData.firstName}
-              aria-label="firstName"
-              placeholder="First Name"
-              required
-            />
-            <label htmlFor="lastName">Last Name</label>
-            <input
-              id="last-name"
-              name="lastName"
-              className="form-control form-control-lg"
-              onChange={handleChange}
-              value={formData.lastName}
-              placeholder="Last Name"
-              aria-label="lastName"
-              required
-            />
-            <label htmlFor="email">Email</label>
-            <input
-              id="email"
-              name="email"
-              className="form-control form-control-lg"
-              onChange={handleChange}
-              value={formData.email}
-              placeholder="Email"
-              aria-label="email"
-              required
-            />
-          </div>
-          <div className="col-auto">
-            <button className="btn search-btn btn-lg btn-primary">
-              Submit
-            </button>
+    <div className="SignupForm">
+      <div className="container col-md-6 offset-md-3 col-lg-4 offset-lg-4">
+        <h1 className="SignupForm-Message">Sign Up</h1>
+        <div className="card">
+          <div className="card-body">
+            <form className="SignupForm-Form" onSubmit={handleSubmit}>
+              <label htmlFor="username">Username</label>
+              <input
+                id="username"
+                name="username"
+                className="form-control form-control-lg"
+                onChange={handleChange}
+                value={formData.username}
+                aria-label="username"
+                placeholder="username"
+                required
+              />
+              <label htmlFor="password">Password</label>
+              <input
+                id="password"
+                name="password"
+                className="form-control form-control-lg"
+                onChange={handleChange}
+                value={formData.password}
+                aria-label="password"
+                type="password"
+                placeholder="password"
+                minLength="5"
+                required
+              />
+              <label htmlFor="firstName">First Name</label>
+              <input
+                id="first-name"
+                name="firstName"
+                className="form-control form-control-lg"
+                onChange={handleChange}
+                value={formData.firstName}
+                aria-label="firstName"
+                placeholder="First Name"
+                required
+              />
+              <label htmlFor="lastName">Last Name</label>
+              <input
+                id="last-name"
+                name="lastName"
+                className="form-control form-control-lg"
+                onChange={handleChange}
+                value={formData.lastName}
+                placeholder="Last Name"
+                aria-label="lastName"
+                required
+              />
+              <label htmlFor="email">Email</label>
+              <input
+                id="email"
+                name="email"
+                className="form-control form-control-lg"
+                onChange={handleChange}
+                value={formData.email}
+                placeholder="Email"
+                aria-label="email"
+                required
+              />
+              <div className="SignupForm-button d-grid">
+                <button className="btn search-btn btn-lg btn-primary">
+                  Submit
+                </button>
+              </div>
+            </form>
           </div>
         </div>
-      </form>
-      {apiError.isError && <p>{apiError.errorMessage}</p>}
+        {apiError.isError && <p>{apiError.errorMessage}</p>}
+      </div>
     </div>
   );
 }

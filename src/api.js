@@ -72,11 +72,7 @@ class JoblyApi {
   /** PATCH Edit user */
 
   static async editUser(username, updateData) {
-    let res = await this.request(
-      `users/${username}`,
-      updateData,
-      "patch"
-    );
+    let res = await this.request(`users/${username}`, updateData, "patch");
     return res.user;
   }
 
