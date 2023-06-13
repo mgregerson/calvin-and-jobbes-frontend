@@ -1,0 +1,19 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Unauthorized Component matches snapshot 1`] = `
+<div>
+  <div
+    class="Unauthorized"
+  >
+    <img
+      class="Unauthorized-photo"
+      src="../unauthorized.jpg"
+    />
+    <h3
+      class="Unauthorized-message"
+    >
+      Please login to access this page!
+    </h3>
+  </div>
+</div>
+`;

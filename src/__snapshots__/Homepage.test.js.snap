@@ -1,0 +1,26 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Homepage matches snapshot 1`] = `
+<div>
+  <div
+    class="Homepage"
+  >
+    <div
+      class="container text-center my-auto"
+    >
+      <h1
+        class="Homepage-title mb-4 fw-bold"
+      >
+        Jobber the Hutt
+      </h1>
+      <p
+        class="Homepage-welcome lead"
+      >
+        Welcome, 
+        test-username
+        !
+      </p>
+    </div>
+  </div>
+</div>
+`;
