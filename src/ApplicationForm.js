@@ -46,6 +46,7 @@ function ApplicationForm({ handleApplication, job }) {
     });
   }
 
+  // hi
   /** Navigates to signup page if successfully logged in, else shows error msg*/
   async function handleSubmit(evt) {
     evt.preventDefault();
