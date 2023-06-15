@@ -1,5 +1,4 @@
-
-.JobCard.card{
+.JobCard.card {
   border: none;
   border-radius: 5px;
   margin-bottom: 1rem;
@@ -22,7 +21,15 @@
   color: inherit;
   align-items: flex-start;
   padding: 16px;
+  position: relative;
+}
 
+.JobCard-apply {
+  position: absolute;
+  bottom: 5px;
+  right: 5px;
+  margin-right: 5px;
+  margin-bottom: 5px;
 }
 
 .JobCard-company-name {
