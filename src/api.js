@@ -83,11 +83,21 @@ class JoblyApi {
     return res.applied;
   }
 
+  /** POST Remove Application to Job */
+
+  static async removeApplication(username, id) {
+    let res = await this.request(
+      `users/${username}/jobs/${id}/remove`,
+      {},
+      "post"
+    );
+    return res.unapplied;
+  }
+
   // APPLICATIONS
 
   static async getApplicationsByUsername(username) {
     let res = await this.request(`users/${username}/applications`);
-    console.log(res, "RES IN JOBLYAPI");
     return res;
   }
 

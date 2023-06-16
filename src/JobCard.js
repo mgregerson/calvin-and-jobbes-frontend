@@ -52,8 +52,13 @@ function JobCard({ title, companyName, salary, equity, id }) {
   );
 
   async function applyToJob() {
-    const jobApplication = await JoblyApi.applyToJob(user.username, id);
+    await JoblyApi.applyToJob(user.username, id);
     setHasApplied(true);
+  }
+
+  async function removeApplication() {
+    await JoblyApi.removeApplication(user.username, id);
+    setHasApplied(false);
   }
 
   return (
@@ -90,7 +95,7 @@ function JobCard({ title, companyName, salary, equity, id }) {
               type="button"
               className="JobCard-apply btn search-btn btn-sm btn-danger"
               style={{ marginRight: "5px", marginBottom: "5px" }}
-              onClick={applyToJob}
+              onClick={removeApplication}
             >
               Unapply
             </button>
