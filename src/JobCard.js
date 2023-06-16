@@ -1,9 +1,9 @@
 import "./JobCard.css";
-import { useHistory } from "react-router-dom";
-import ApplicationForm from "./ApplicationForm";
-import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import JoblyApi from "./api";
+import { useContext } from "react";
+import userContext from "./userContext.js";
+import { useEffect } from "react";
 
 /** JobCard
  *
@@ -21,13 +21,40 @@ import JoblyApi from "./api";
 
 function JobCard({ title, companyName, salary, equity, id }) {
   const [hasApplied, setHasApplied] = useState(false);
-  async function applyToJob() {
-    setHasApplied(!hasApplied);
-  }
+  const [apiError, setApiError] = useState({});
+  const [isLoading, setIsLoading] = useState(true);
+  const { user } = useContext(userContext);
 
-  // async function getJobId() {
-  //   const company = await
-  // }
+  useEffect(
+    function fetchApplicationStatus() {
+      async function getApplicationStatus() {
+        try {
+          const applications = await JoblyApi.getApplicationsByUsername(
+            user.username
+          );
+          if (applications.includes(id)) {
+            setHasApplied(true);
+          }
+        } catch (err) {
+          setIsLoading(false);
+          console.log(err);
+          setApiError({
+            isError: true,
+            errorMessage: err[0],
+          });
+        }
+      }
+      if (isLoading === true) {
+        getApplicationStatus();
+      }
+    },
+    [hasApplied]
+  );
+
+  async function applyToJob() {
+    const jobApplication = await JoblyApi.applyToJob(user.username, id);
+    setHasApplied(true);
+  }
 
   return (
     <div className="JobCard-container">

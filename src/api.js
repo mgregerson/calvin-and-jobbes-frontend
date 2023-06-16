@@ -76,6 +76,21 @@ class JoblyApi {
     return res.user;
   }
 
+  /** POST Apply to Job */
+
+  static async applyToJob(username, id) {
+    let res = await this.request(`users/${username}/jobs/${id}`, {}, "post");
+    return res.applied;
+  }
+
+  // APPLICATIONS
+
+  static async getApplicationsByUsername(username) {
+    let res = await this.request(`users/${username}/applications`);
+    console.log(res, "RES IN JOBLYAPI");
+    return res;
+  }
+
   // COMPANIES
 
   /** Get details on a company by handle. */
