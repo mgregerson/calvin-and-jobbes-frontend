@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useContext } from "react";
 import userContext from "./userContext";
 import "./ProfileForm.css";
+import { useNavigate } from "react-router";
 
 /** ProfileForm
  *
@@ -24,7 +25,7 @@ function ProfileForm({ handleProfileEdit }) {
     email: user.email,
   });
 
-  console.log(user, "USER IN PROFILEFORM");
+  const navigate = useNavigate();
 
   /** Handles keystrokes in searchbar and updates formData */
   function handleChange(evt) {
@@ -39,10 +40,13 @@ function ProfileForm({ handleProfileEdit }) {
   /** handleSubmit of the form. Call function in props */
   function handleSubmit(evt) {
     evt.preventDefault();
-    const updateData = formData;
-    delete updateData.username;
-    console.log(formData, "THE FORM DATA IN PROFILE");
+    const updateData = {
+      firstName: formData.firstName,
+      lastName: formData.lastName,
+      email: formData.email,
+    };
     handleProfileEdit(user.username, updateData);
+    navigate("/");
   }
 
   return (
@@ -69,6 +73,7 @@ function ProfileForm({ handleProfileEdit }) {
                 className="form-control form-control-lg"
                 onChange={handleChange}
                 value={formData.firstName}
+                placeholder="First Name"
                 required
                 aria-label="firstName"
               />
@@ -79,6 +84,7 @@ function ProfileForm({ handleProfileEdit }) {
                 className="form-control form-control-lg"
                 onChange={handleChange}
                 value={formData.lastName}
+                placeholder="Last Name"
                 aria-label="lastName"
                 required
               />
@@ -86,9 +92,11 @@ function ProfileForm({ handleProfileEdit }) {
               <input
                 id="email"
                 name="email"
+                type="email"
                 className="form-control form-control-lg"
                 onChange={handleChange}
                 value={formData.email}
+                placeholder="E-Mail"
                 aria-label="email"
                 required
               />
