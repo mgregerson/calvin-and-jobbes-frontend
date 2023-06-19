@@ -1,13 +1,19 @@
 import { render, fireEvent, screen } from "@testing-library/react";
-import { useContext } from "react";
 import React from "react";
-import { MemoryRouter } from "react-router-dom";
+import { MemoryRouter, Router } from "react-router-dom";
+import * as router from "react-router";
 import ProfileForm from "./ProfileForm";
 import userContext from "./userContext";
+import { createMemoryHistory } from "history";
 
+const navigate = jest.fn();
 const testHandleProfileEdit = jest.fn();
 
 describe("ProfileForm Component", () => {
+  beforeEach(() => {
+    jest.spyOn(router, "useNavigate").mockImplementation(() => navigate);
+  });
+
   const mockUser = {
     username: "test-username",
     firstName: "test-firstName",
@@ -65,8 +71,9 @@ describe("ProfileForm Component", () => {
   });
 
   it("Allows a user to update their profile with valid inputs", function () {
+    const history = createMemoryHistory({ initialEntries: ["/"] }); // Set initial route
     const { container } = render(
-      <MemoryRouter>
+      <MemoryRouter history={history}>
         <WrapperComponent>
           <ProfileForm handleProfileEdit={testHandleProfileEdit} />
         </WrapperComponent>
@@ -83,6 +90,7 @@ describe("ProfileForm Component", () => {
     const submitBtn = container.querySelector(".search-btn");
     fireEvent.click(submitBtn);
     expect(testHandleProfileEdit).toHaveBeenCalled();
+    expect(navigate).toHaveBeenCalledWith("/");
   });
 
   it("Does not allow a user to update their username", function () {
