@@ -10,6 +10,7 @@ import Unauthorized from "./Unauthorized";
 import ProfileForm from "./ProfileForm";
 import { useContext } from "react";
 import userContext from "./userContext.js";
+import ApplicationsList from "./ApplicationsList";
 
 /** RoutesList
  *
@@ -28,8 +29,6 @@ import userContext from "./userContext.js";
 function RoutesList({ handleSignup, handleLogin, handleProfileEdit }) {
   const { user } = useContext(userContext);
 
-  console.log(user, "USER IN ROUTES LIST");
-
   if (user) {
     return (
       <Routes>
@@ -37,7 +36,14 @@ function RoutesList({ handleSignup, handleLogin, handleProfileEdit }) {
         <Route path="/companies" element={<CompanyList />}></Route>
         <Route path="/companies/:handle" element={<CompanyDetail />}></Route>
         <Route path="/jobs" element={<JobList />}></Route>
-        <Route path="/profile" element={<ProfileForm handleProfileEdit={handleProfileEdit} />}></Route>
+        <Route
+          path="/applications"
+          element={<ApplicationsList user={user} />}
+        ></Route>
+        <Route
+          path="/profile"
+          element={<ProfileForm handleProfileEdit={handleProfileEdit} />}
+        ></Route>
         <Route path="*" element={<NotFound />}></Route>
       </Routes>
     );
