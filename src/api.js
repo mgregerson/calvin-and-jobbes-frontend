@@ -94,11 +94,18 @@ class JoblyApi {
     return res.unapplied;
   }
 
+  /** GET Jobs use has applied to */
+
+  static async getAppliedJobs(username) {
+    let res = await this.request(`users/${username}/jobs`);
+    return res.jobs;
+  }
+
   // APPLICATIONS
 
-  static async getApplicationsByUsername(username) {
+  static async getJobApplicationDetails(username) {
     let res = await this.request(`users/${username}/applications`);
-    return res;
+    return res.jobs;
   }
 
   // COMPANIES
