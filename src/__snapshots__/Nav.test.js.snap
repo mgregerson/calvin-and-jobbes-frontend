@@ -1,0 +1,97 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Nav component matches snapshot 1`] = `
+<div>
+  <nav
+    class="Navigation navbar navbar-expand-md"
+  >
+    <div
+      class="container-fluid"
+    >
+      <a
+        aria-current="page"
+        class="navbar-brand active"
+        href="/"
+      >
+        Calvin and Jobbes
+      </a>
+      <ul
+        class="navbar-nav ms-auto"
+      >
+        <li
+          class="nav-item me-4"
+        >
+          <a
+            class="nav-link"
+            href="/companies"
+          >
+            Companies
+          </a>
+        </li>
+        <li
+          class="nav-item me-4"
+        >
+          <a
+            class="nav-link"
+            href="/jobs"
+          >
+            Jobs
+          </a>
+        </li>
+        <li
+          class="nav-item me-4"
+        >
+          <a
+            class="nav-link"
+            href="/profile"
+          >
+            Edit Profile
+          </a>
+        </li>
+        <li
+          class="nav-item me-4"
+        >
+          <a
+            class="nav-link"
+            href="/applications"
+          >
+            My Applications
+          </a>
+        </li>
+        <li
+          class="nav-item me-4"
+        >
+          <a
+            aria-current="page"
+            class="nav-link active"
+            href="/"
+          >
+            Log out 
+            test-user
+          </a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+  <div
+    class="Homepage"
+  >
+    <div
+      class="container text-center my-auto"
+    >
+      <h1
+        class="Homepage-title mb-4 fw-bold"
+      >
+        Calvin and Jobbes
+      </h1>
+      <p
+        class="Homepage-welcome lead"
+      >
+        Welcome, 
+        test-user
+        !
+      </p>
+    </div>
+  </div>
+</div>
+`;

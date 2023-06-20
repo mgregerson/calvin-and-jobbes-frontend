@@ -1,0 +1,96 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ProfileForm Component matches snapshot 1`] = `
+<div>
+  <div
+    class="pt-5"
+  >
+    <div
+      class="ProfileForm col-md-6 col-lg-4 offset-md-3 offset-lg-4"
+    >
+      <h3
+        class="ProfileForm-message"
+      >
+        Update Profile
+      </h3>
+      <div
+        class="card"
+      >
+        <div
+          class="card-body"
+        >
+          <form
+            class="ProfileForm-Form"
+          >
+            <label
+              for="username"
+            >
+              Username
+            </label>
+            <input
+              aria-label="username"
+              class="form-control form-control-lg"
+              disabled=""
+              id="username"
+              name="username"
+              value="test-username"
+            />
+            <label
+              for="firstName"
+            >
+              First Name
+            </label>
+            <input
+              aria-label="firstName"
+              class="form-control form-control-lg"
+              id="first-name"
+              name="firstName"
+              placeholder="First Name"
+              required=""
+              value="test-firstName"
+            />
+            <label
+              for="lastName"
+            >
+              Last Name
+            </label>
+            <input
+              aria-label="lastName"
+              class="form-control form-control-lg"
+              id="last-name"
+              name="lastName"
+              placeholder="Last Name"
+              required=""
+              value="test-lastName"
+            />
+            <label
+              for="email"
+            >
+              Email
+            </label>
+            <input
+              aria-label="email"
+              class="form-control form-control-lg"
+              id="email"
+              name="email"
+              placeholder="E-Mail"
+              required=""
+              type="email"
+              value="test-email"
+            />
+            <div
+              class="ProfileForm-button"
+            >
+              <button
+                class="btn search-btn btn-lg btn-primary"
+              >
+                Submit
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
