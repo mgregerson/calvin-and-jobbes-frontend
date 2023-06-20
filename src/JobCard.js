@@ -29,7 +29,7 @@ function JobCard({ title, companyName, salary, equity, id }) {
     function fetchApplicationStatus() {
       async function getApplicationStatus() {
         try {
-          const applications = await JoblyApi.getApplicationsByUsername(
+          const applications = await JoblyApi.getJobApplicationDetails(
             user.username
           );
           if (applications.includes(id)) {
