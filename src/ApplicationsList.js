@@ -3,6 +3,17 @@ import JobCardList from "./JobCardList";
 import "./JobCard.css";
 import { useState, useEffect } from "react";
 
+/**
+ * JobCardList
+ *
+ * Props:
+ *      - User: {username, firstName, lastName, isAdmin, email, applications}
+ *
+ * App -> RoutesList -> ApplicationsList -> JobCardList -> JobCard
+ *
+ * Accessed at "/applications"
+ */
+
 function ApplicationsList({ user }) {
   const [jobs, setJobs] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
