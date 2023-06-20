@@ -58,7 +58,7 @@ describe("Nav component", function () {
         </MemoryRouter>
       </userContext.Provider>
     );
-    const navbarBrandLink = screen.getByText("Jobber the Hutt");
+    const navbarBrandLink = screen.getByText("Calvin and Jobbes");
     fireEvent.click(navbarBrandLink);
 
     // Assert that the current URL is "/"

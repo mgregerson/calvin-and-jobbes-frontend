@@ -1,9 +1,0 @@
-// import React, { useState } from 'react';
-// import useLocalStorage from './useLocalStorage';
-
-// function App() {
-//   const [name, setName] = useLocalStorage('name', ''); // initialize with an empty string
-
-//   const handleNameChange = (event) => {
-//     setName(event.target.value);
-//   };

@@ -25,7 +25,7 @@ function Nav({ logOut }) {
     <nav className="Navigation navbar navbar-expand-md">
       <div className="container-fluid">
         <NavLink className="navbar-brand" to="/" end>
-          Jobber the Hutt
+          Calvin and Jobbes
         </NavLink>
 
         {user?.username ? (
@@ -43,6 +43,11 @@ function Nav({ logOut }) {
             <li className="nav-item me-4">
               <NavLink className="nav-link" to="/profile" end>
                 Edit Profile
+              </NavLink>
+            </li>
+            <li className="nav-item me-4">
+              <NavLink className="nav-link" to="/applications" end>
+                My Applications
               </NavLink>
             </li>
             <li className="nav-item me-4">
