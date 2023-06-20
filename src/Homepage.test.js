@@ -16,7 +16,7 @@ describe("Homepage", function () {
   it("Displays the name of the application on the page", function () {
     const { container } = render(<Homepage user={TEST_USER} />);
     expect(container.querySelector(".Homepage-title").innerHTML).toEqual(
-      "Jobber the Hutt"
+      "Calvin and Jobbes"
     );
   });
   it("Displays a welcome message with the user's username if they are logged in", function () {

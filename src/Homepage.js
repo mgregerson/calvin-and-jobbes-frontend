@@ -12,11 +12,16 @@ function Homepage({ user }) {
   return (
     <div className="Homepage">
       <div className="container text-center my-auto">
-        <h1 className="mb-4 fw-bold">Jobber the Hutt</h1>
+        <h1 className="Homepage-title mb-4 fw-bold">Calvin and Jobbes</h1>
         {user ? (
-          <p className="lead">Welcome, {user.username}!</p>
+          <p className="Homepage-welcome lead">Welcome, {user.username}!</p>
         ) : (
-          <p className="lead">Find Your Dream Job</p>
+          <div className="Homepage-stranger">
+            <p className="Homepage-slogan lead">Find Your Dream Job</p>
+            <p className="Homepage-info">
+              A job searching app written in React and Express.
+            </p>
+          </div>
         )}
       </div>
     </div>
