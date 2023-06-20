@@ -23,7 +23,6 @@ function App() {
   const [user, setUser] = useState(null);
   const [token, setToken] = useState(localStorage.getItem("token"));
 
-  // console.log(localStorage.getItem("token"), "LOCALSTORAGE: TOKEN");
   console.log(token, "TOKEN STATE");
   console.log(user, "USER STATE");
 
@@ -35,7 +34,6 @@ function App() {
           const user = await JoblyApi.getUser(username);
           setUser(user);
         } catch (err) {
-          // console.log the error (Or think long-term of what should happen here)
           return;
         }
       }
@@ -63,11 +61,9 @@ function App() {
   }
 
   /** Sets all states to null (logs out user and removes token/user from localStorage) */
-  // Destructure formdata when passing info from formData
   function logOut(formData) {
     setUser(null);
     setToken(null);
-    // Call removeItem instead of setItem
     localStorage.removeItem("token");
   }
 
