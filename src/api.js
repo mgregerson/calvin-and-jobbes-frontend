@@ -16,9 +16,9 @@ class JoblyApi {
 
   // DEVELOPMENT: Token is provided for user 'admin' so that user is automatically logged in.
   static token =
-    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9." +
-    "eyJ1c2VybmFtZSI6ImFkbWluIiwiaXNBZG1pbiI6dHJ1ZSwiaWF0IjoxNjg3NDQ0ODM3fQ." +
-    "Z2J6d1wIS9FjFb3qzeDBhUAT_90vd8UJF0prLZJorjo";
+    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InRlc3RhZ" +
+    "G1pbiIsImlzQWRtaW4iOnRydWUsImlhdCI6MTY4NzQ0NTk2OX0.oileW5hKLpdiIfc-UfBPP23W_Oi" +
+    "XwE40PW-NNcJTUnk";
 
   static async request(endpoint, data = {}, method = "get") {
     console.debug("API Call:", endpoint, data, method, this.token);
