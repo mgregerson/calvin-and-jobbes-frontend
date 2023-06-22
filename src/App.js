@@ -21,10 +21,10 @@ import jwt_decode from "jwt-decode";
 
 function App() {
   const [user, setUser] = useState(null);
-  const [token, setToken] = useState(localStorage.getItem("token"));
-
-  console.log(token, "TOKEN STATE");
-  console.log(user, "USER STATE");
+  // DEV BUILD TOKEN:
+  const [token, setToken] = useState(JoblyApi.token);
+  // PRODUCTION BUILD TOKEN:
+  // const [token, setToken] = useState(localStorage.getItem("token"));
 
   /** Updates state for user and token whenever token changes. Adds token and user to local storage. */
   useEffect(

@@ -11,10 +11,14 @@ const BASE_URL = process.env.REACT_APP_BASE_URL || "http://localhost:3001";
  */
 
 class JoblyApi {
-  // Remember, the backend needs to be authorized with a token
-  // We're providing a token you can use to interact with the backend API
-  // DON'T MODIFY THIS TOKEN
-  static token = "";
+  // PRODUCTION: Token should be set to empty string so that user's are not automatically logged in.
+  // static token = ""
+
+  // DEVELOPMENT: Token is provided for user 'admin' so that user is automatically logged in.
+  static token =
+    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9." +
+    "eyJ1c2VybmFtZSI6ImFkbWluIiwiaXNBZG1pbiI6dHJ1ZSwiaWF0IjoxNjg3NDQ0ODM3fQ." +
+    "Z2J6d1wIS9FjFb3qzeDBhUAT_90vd8UJF0prLZJorjo";
 
   static async request(endpoint, data = {}, method = "get") {
     console.debug("API Call:", endpoint, data, method, this.token);
