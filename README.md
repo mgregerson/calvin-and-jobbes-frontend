@@ -1,6 +1,6 @@
 # Welcome to Calvin and Jobbes - a Job Searching App for Everyone - because even Calvin has a dream job!
 
-This project was designed solely by Matt Gregerson. Feel free to reach out with any questions on my design philosophy.
+This project was designed by Matt Gregerson. Feel free to reach out with any questions on my design philosophy.
 
 In order for the backend to run, please see my readme for my Node/Express based backend: https://github.com/mgregerson/jobber-the-hutt-backend
 
